@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
+</head>
+
+<body>
+<nav> 
+<ul>
+<li><a id='home' href='http://localhost:4000'>HOME</a></li>
+<li><a id='home' href='http://localhost:4000/users'>USERS</a></li>
+<li><a id='home' href='http://localhost:4000/search'>SEARCH</a></li>
+<li><a id='home' href='http://localhost:4000/form'>ADD USER</a></li>
+<ul>
+</nav> 
+
+    <h3>Here is your results:</h3>
+    <br>
+    <br>
+   
+    <div class="searchedItem">
+        <h4>
+            First Name:
+            <%= result.firstname %>
+        </h4>
+        <h4>
+            Last Name:
+            <%= result.lastname %>
+        </h4>
+        <h4>
+            Email:
+            <%= result.email %>
+        </h4>
+    </div>
+
+    <footer>
+    <p> Made by morfsm </p>
+    </footer>
+
+</body>
+
+</html>

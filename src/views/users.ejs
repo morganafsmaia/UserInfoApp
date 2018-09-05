@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
+</head>
+
+<body>
+<nav> 
+<ul>
+<li><a id='home' href='http://localhost:4000'>HOME</a></li>
+<li><a id='home' href='http://localhost:4000/users'>USERS</a></li>
+<li><a id='home' href='http://localhost:4000/search'>SEARCH</a></li>
+<li><a id='home' href='http://localhost:4000/form'>ADD USER</a></li>
+<ul>
+</nav> 
+    <h1>List of users</h1>
+    <ul id = users>
+        <% for (var i = 0; i < obj.length; i++){ %>
+        <hr>
+         <li>
+            <h2>User
+                <%= i %>
+            </h2>
+            <h4>
+                First Name: 
+                <%= obj[i].firstname %>
+            </h4>
+            <h4>
+                    Last Name: 
+                <%= obj[i].lastname %>
+            </h4>
+            <h4>
+                Email: 
+                <%= obj[i].email %>
+            </h4>
+        </li>
+        
+        <% }; %>
+    </ul>
+
+    <footer>
+    <p> Made by morfsm </p>
+ </footer>
+
+
+</body>
+
+</html>

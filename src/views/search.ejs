@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
+</head>
+
+<body>
+<nav> 
+<ul>
+<li><a id='home' href='http://localhost:4000'>HOME</a></li>
+<li><a id='home' href='http://localhost:4000/users'>USERS</a></li>
+<li><a id='home' href='http://localhost:4000/search'>SEARCH</a></li>
+<li><a id='home' href='http://localhost:4000/form'>ADD USER</a></li>
+<ul>
+</nav> 
+
+    <h3>Please type either the first name or last name you are searching for!</h3>
+    <br>
+    <br>
+    <form action="/result" method="post">
+        First name: <input type="text" name="firstname">
+        <br>
+        <br>
+        Last name:<input type="text" name="lastname">
+        <br>
+        <br>
+        <input type="submit" value="Search">
+    </form>
+
+    <footer>
+       <p> Made by morfsm </p>
+    </footer>
+
+</body>
+
+</html>
