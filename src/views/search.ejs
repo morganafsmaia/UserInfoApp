@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
     <link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
@@ -13,10 +13,10 @@
 <body>
 <nav> 
 <ul>
-<li><a id='home' href='http://localhost:4000'>HOME</a></li>
-<li><a id='home' href='http://localhost:4000/users'>USERS</a></li>
-<li><a id='home' href='http://localhost:4000/search'>SEARCH</a></li>
-<li><a id='home' href='http://localhost:4000/form'>ADD USER</a></li>
+<li><a href='/'>HOME</a></li>
+<li><a href='/users'>USERS</a></li>
+<li><a href='/search'>SEARCH</a></li>
+<li><a href='/form'>ADD USER</a></li>
 <ul>
 </nav> 
 
@@ -24,11 +24,11 @@
     <br>
     <br>
     <form action="/result" method="post">
-        First name: <input type="text" name="firstname">
+        First name: <input id="firstname" type="text" name="firstname">
+        <ul id="fnAC"></ul>
         <br>
-        <br>
-        Last name:<input type="text" name="lastname">
-        <br>
+        Last name:<input id="lastname" type="text" name="lastname">
+        <ul id="lnAC"></ul>
         <br>
         <input type="submit" value="Search">
     </form>
@@ -36,6 +36,15 @@
     <footer>
        <p> Made by morfsm </p>
     </footer>
+
+    <script type="text/javascript">
+    $("#firstname").on("input",(event)=>{
+        var query = $("#firstname").val()
+        $.post()
+    });
+
+        
+    </script>
 
 </body>
 
