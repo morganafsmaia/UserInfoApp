@@ -23,7 +23,6 @@ a {
 }
 
 footer {
-    position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
@@ -86,4 +85,14 @@ h4 {
 #users li {
     column-count: 4;
     column-gap: 5px;
+}
+
+#lnAC li, #fnAC li {
+    background-color: white;
+    width: 150px;
+    margin: 0 auto;
+}
+
+#firstname, #lastname {
+    margin: 0 auto;
 }
