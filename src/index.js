@@ -58,6 +58,31 @@ index.get('/search', (req, res) => {
     res.render('search');
 });
 
+index.post('/search', (req, res) => {
+    var searchfirst = req.body.queryfn;
+    var searchlast = req.body.queryln;
+   
+    fs.readFile('./src/users.json', (err, data) => {
+        if (err) {
+            throw err;
+        };
+        var result = {};
+        var obj = JSON.parse(data);
+        for (let i = 0; i < obj.length; i++) {
+            var FNbase = obj[i].firstname.toLowerCase()
+            var LNbase = obj[i].lastname.toLowerCase()
+            if (FNbase.includes(searchfirst)) {
+                result[i]=FNbase;
+            } else if (LNbase.includes(searchlast)) {
+                result[i]=LNbase;
+            };
+        };
+       
+        res.send(result);
+    });
+
+});
+
 // - route 3: takes in the post request from your form, then displays matching users on a new page. 
 //Users should be matched based on whether either their first or last name contains the input string.
 
