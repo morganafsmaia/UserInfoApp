@@ -61,7 +61,6 @@ index.get('/search', (req, res) => {
 index.post('/search', (req, res) => {
     var searchfirst = req.body.queryfn;
     var searchlast = req.body.queryln;
-   
     fs.readFile('./src/users.json', (err, data) => {
         if (err) {
             throw err;

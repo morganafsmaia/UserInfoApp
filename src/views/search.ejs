@@ -25,14 +25,16 @@
     <br>
     <br>
     <form action="/result" method="post">
+        <div id="first"> 
         First name: <br>
         <input id="firstname" type="text" name="firstname">
         <ul id="fnAC"></ul>
-        <br>
+        </div>
+        <div id="last">
         Last name: <br>
         <input id="lastname" type="text" name="lastname">
         <ul id="lnAC"></ul>
-        <br>
+        </div>
         <input type="submit" value="Search">
     </form>
 
@@ -42,7 +44,7 @@
 
     <script type="text/javascript">
     $("#firstname").on("keyup",(event)=>{
-        var queryfn = $("#firstname").val()
+        var queryfn = $("#firstname").val().toLowerCase()
         if(queryfn.length != 0){
         $.post('/search', {queryfn:queryfn}, (response)=>{
                 $('#fnAC').empty();
@@ -50,8 +52,10 @@
                 $('#fnAC').append(`<li class='suggestionsF'>${response[el]}</li>`)
                 }
         })
+        $("#last").fadeOut();
     }else{
         $('#fnAC').empty();
+        $("#last").fadeIn();
     }
     });
 
@@ -61,7 +65,7 @@
  })
 
  $("#lastname").on("keyup",(event)=>{
-        var queryln = $("#lastname").val()
+        var queryln = $("#lastname").val().toLowerCase()
         if(queryln.length != 0){
         $.post('/search', {queryln:queryln}, (response)=>{
                 $('#lnAC').empty();
@@ -69,8 +73,10 @@
                 $('#lnAC').append(`<li class='suggestionsL'>${response[el]}</li>`)
                 }
         })
+        $("#first").fadeOut();
     }else{
         $('#lnAC').empty();
+        $("#first").fadeIn();
     }
     });
 
