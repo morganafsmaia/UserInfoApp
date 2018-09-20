@@ -12,80 +12,115 @@
 </head>
 
 <body>
-<nav> 
-<ul>
-<li><a href='/'>HOME</a></li>
-<li><a href='/users'>USERS</a></li>
-<li><a href='/search'>SEARCH</a></li>
-<li><a href='/form'>ADD USER</a></li>
-<ul>
-</nav> 
+    <nav>
+        <ul>
+            <li><a href='/'>HOME</a></li>
+            <li><a href='/users'>USERS</a></li>
+            <li><a href='/search'>SEARCH</a></li>
+            <li><a href='/form'>ADD USER</a></li>
+            <ul>
+    </nav>
 
     <h3>Please type either the first name or last name you are searching for!</h3>
     <br>
     <br>
     <form action="/result" method="post">
-        <div id="first"> 
-        First name: <br>
-        <input id="firstname" type="text" name="firstname">
-        <ul id="fnAC"></ul>
+        <div id="first">
+            First name: <br>
+            <input id="firstname" type="text" name="firstname">
+            <ul id="fnAC"></ul>
         </div>
         <div id="last">
-        Last name: <br>
-        <input id="lastname" type="text" name="lastname">
-        <ul id="lnAC"></ul>
+            Last name: <br>
+            <input id="lastname" type="text" name="lastname">
+            <ul id="lnAC"></ul>
         </div>
         <input type="submit" value="Search">
     </form>
 
     <footer>
-       <p> Made by morfsm </p>
+        <p> Made by morfsm </p>
     </footer>
 
     <script type="text/javascript">
-    $("#firstname").on("keyup",(event)=>{
-        var queryfn = $("#firstname").val().toLowerCase()
-        if(queryfn.length != 0){
-        $.post('/search', {queryfn:queryfn}, (response)=>{
-                $('#fnAC').empty();
-                for (const el in response){
-                $('#fnAC').append(`<li class='suggestionsF'>${response[el]}</li>`)
+        $(document).ready(() => {
+            var debounce_timeout = null;
+            var counter = 0;
+            $("#firstname").on("keyup", (event) => {
+                var queryfn = $("#firstname").val().toLowerCase()
+
+                clearTimeout(debounce_timeout);
+                debounce_timeout = setTimeout(function () {
+                    debounce_timeout = null;
+                    counter++;
+                    optimizeF(queryfn);
+                    console.log(counter)
+                }, 300);
+            });
+
+            function optimizeF(queryfn) {
+                if (queryfn.length != 0) {
+                    $.post('/search', {
+                        queryfn: queryfn
+                    }, (response) => {
+                        $('#fnAC').empty();
+                        for (const el in response) {
+                            $('#fnAC').append(
+                                `<li class='suggestionsF'>${response[el]}</li>`)
+                        }
+                    })
+                    $("#last").fadeOut();
+                } else {
+                    $('#fnAC').empty();
+                    $("#last").fadeIn();
                 }
-        })
-        $("#last").fadeOut();
-    }else{
-        $('#fnAC').empty();
-        $("#last").fadeIn();
-    }
-    });
+            };
 
-    $("#fnAC").on("click", "li", (event)=>{
-            var target = event.target
-            $("#firstname").val(target.textContent); 
- })
 
- $("#lastname").on("keyup",(event)=>{
-        var queryln = $("#lastname").val().toLowerCase()
-        if(queryln.length != 0){
-        $.post('/search', {queryln:queryln}, (response)=>{
-                $('#lnAC').empty();
-                for (const el in response){
-                $('#lnAC').append(`<li class='suggestionsL'>${response[el]}</li>`)
+            $("#fnAC").on("click", "li", (event) => {
+                var target = event.target
+                $("#firstname").val(target.textContent);
+            });
+
+            $("#lastname").on("keyup", (event) => {
+                var queryln = $("#lastname").val().toLowerCase()
+
+                 clearTimeout(debounce_timeout);
+                debounce_timeout = setTimeout(function () {
+                    debounce_timeout = null;
+                    counter++;
+                    optimizeL(queryln);
+                    console.log(counter)
+                }, 300);
+                
+            });
+
+            function optimizeL(queryln) {
+                if (queryln.length != 0) {
+                    $.post('/search', {
+                        queryln: queryln
+                    }, (response) => {
+                        $('#lnAC').empty();
+                        for (const el in response) {
+                            $('#lnAC').append(
+                                `<li class='suggestionsL'>${response[el]}</li>`)
+                        }
+                    })
+                    $("#first").fadeOut();
+                } else {
+                    $('#lnAC').empty();
+                    $("#first").fadeIn();
                 }
-        })
-        $("#first").fadeOut();
-    }else{
-        $('#lnAC').empty();
-        $("#first").fadeIn();
-    }
-    });
+            }
 
-    $("#lnAC").on("click", "li", (event)=>{
-            var target = event.target
-            $("#lastname").val(target.textContent); 
- })
 
-        
+
+            $("#lnAC").on("click", "li", (event) => {
+                var target = event.target
+                $("#lastname").val(target.textContent);
+            });
+
+        });
     </script>
 
 </body>
